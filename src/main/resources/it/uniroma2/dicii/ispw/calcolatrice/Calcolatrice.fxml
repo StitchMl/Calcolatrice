@@ -6,7 +6,7 @@
 
 <!--suppress ALL -->
 
-<VBox alignment="CENTER" prefHeight="460.0" prefWidth="320.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.calcolatrice.Calculate">
+<VBox alignment="CENTER" prefHeight="460.0" prefWidth="320.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.uniroma2.dicii.ispw.calcolatrice.Calculate">
    <children>
       <Label fx:id="display" prefHeight="136.0" prefWidth="318.0" style="-fx-background-color: #C8C8C8; -fx-border-color: #9A9A9A;">
          <font>

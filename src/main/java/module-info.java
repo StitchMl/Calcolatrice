@@ -10,6 +10,6 @@ module com.example.calcolatrice {
     requires org.kordamp.bootstrapfx.core;
     requires eu.hansolo.tilesfx;
 
-    opens com.example.calcolatrice to javafx.fxml;
-    exports com.example.calcolatrice;
+    opens it.uniroma2.dicii.ispw.calcolatrice to javafx.fxml;
+    exports it.uniroma2.dicii.ispw.calcolatrice;
 }

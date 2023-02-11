@@ -1,4 +1,4 @@
-package com.example.calcolatrice;
+package it.uniroma2.dicii.ispw.calcolatrice;
 
 import javafx.application.Application;
 import javafx.fxml.FXML;
