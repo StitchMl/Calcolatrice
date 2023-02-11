@@ -52,47 +52,38 @@ public class Calculate extends Application {
     protected void oneAction() {
         numAction("1");
     }
-
     @FXML
     protected void twoAction() {
         numAction("2");
     }
-
     @FXML
     protected void threeAction() {
         numAction("3");
     }
-
     @FXML
     protected void fourAction() {
         numAction("4");
     }
-
     @FXML
     protected void fiveAction() {
         numAction("5");
     }
-
     @FXML
     protected void sixAction() {
         numAction("6");
     }
-
     @FXML
     protected void sevenAction() {
         numAction("7");
     }
-
     @FXML
     protected void eightAction() {
         numAction("8");
     }
-
     @FXML
     protected void nineAction() {
         numAction("9");
     }
-
     @FXML
     protected void zeroAction(){
         numAction("0");
