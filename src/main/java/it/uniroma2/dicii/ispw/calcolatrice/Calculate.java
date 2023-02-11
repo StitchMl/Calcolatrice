@@ -16,6 +16,7 @@ public class Calculate extends Application {
     private String op  = "";
     private double result= 0;
     private boolean oldop = false ;
+    private static final String ERROR = "Errore: input non valido";
 
     @FXML
     private Label display;
@@ -31,15 +32,12 @@ public class Calculate extends Application {
     }
 
     private void numAction(String n){
-        if (Objects.equals(op, "√")){
+        if (Objects.equals(op, "√") || num1.isEmpty()){
             num1 += n;
             display.setText(op + num1);
         } else if (Objects.equals(op, "log")){
             num1 += n;
             display.setText(op + "(" + num1 + ")");
-        } else if (num1.isEmpty()){
-            num1 += n;
-            display.setText(op + num1);
         } else if (!oldop) {
             num1 += n;
             display.setText(num1);
@@ -123,7 +121,7 @@ public class Calculate extends Application {
                     display.setText(num1 + op);
                     oldop = true;
                 } catch (NumberFormatException e) {
-                    display.setText("Errore: input non valido");
+                    display.setText(ERROR);
                 }
             }
         }
@@ -169,7 +167,7 @@ public class Calculate extends Application {
                     display.setText(num1 + op);
                     oldop = true;
                 } catch (NumberFormatException e) {
-                    display.setText("Errore: input non valido");
+                    display.setText(ERROR);
                 }
             }
         }
@@ -200,7 +198,7 @@ public class Calculate extends Application {
                         oldop = true;
                     }
                 } catch (NumberFormatException e) {
-                    display.setText("Error: Invalid input");
+                    display.setText(ERROR);
                 }
             }
         }
@@ -227,7 +225,7 @@ public class Calculate extends Application {
                     display.setText(num1 + op);
                     oldop = true;
                 } catch (NumberFormatException e) {
-                    display.setText("Errore: input non valido");
+                    display.setText(ERROR);
                 }
             }
         }
@@ -247,7 +245,7 @@ public class Calculate extends Application {
                 display.setText(num1);
                 num2 = "";
             } catch (NumberFormatException e) {
-                display.setText("Errore: input non valido");
+                display.setText(ERROR);
             }
         }
     }
@@ -274,7 +272,7 @@ public class Calculate extends Application {
                 display.setText(op + "(" + num1 + ")");
                 oldop = true;
             } catch (NumberFormatException e) {
-                display.setText("Error: Invalid input");
+                display.setText(ERROR);
             }
         }
     }
@@ -301,56 +299,53 @@ public class Calculate extends Application {
                 display.setText(op + num1);
                 oldop = true;
             } catch (NumberFormatException e) {
-                display.setText("Error: Invalid input");
+                display.setText(ERROR);
             }
         }
     }
 
     @FXML
     protected void equalAction() {
-        if (oldop) {
-            try {
-                double n1 = 0;
-                double n2 = 0;
-                if(!num1.isEmpty()){
-                    n1 = Double.parseDouble(num1);
-                }
-                if (!num2.isEmpty()) {
-                    n2 = Double.parseDouble(num2);
-                }
-                if (op.equals("log")) {
-                    if (n1 <= 0) {
-                        display.setText("Errore: logaritmo di un numero non positivo");
-                        return;
-                    }
-                    result = Math.log10(n1);
-                    num1 = String.valueOf(result);
-                    display.setText(num1);
-                } else if (op.equals("√")) {
-                    if (n1 < 0) {
-                        display.setText("Errore: radice di un numero negativo");
-                        return;
-                    }
-                    result = Math.sqrt(n1);
-                    num1 = String.valueOf(result);
-                    display.setText(num1);
-                } else if (n2 == 0 && op.equals("÷")) {
-                    display.setText("Errore: divisione per zero");
-                } else {
-                    result = calc(n1, n2, op);
-                    num1 = String.valueOf(result);
-                    display.setText(num1);
-                }
-                oldop = false;
-                num2 = "";
-            } catch (NumberFormatException e) {
-                display.setText("Errore: input non valido");
-            }
+        if (!oldop) {
+            return;
         }
+
+        double n1 = num1.isEmpty() ? 0 : Double.parseDouble(num1);
+        double n2 = num2.isEmpty() ? 0 : Double.parseDouble(num2);
+
+        switch (op) {
+            case "log" -> {
+                if (n1 <= 0) {
+                    display.setText("Errore: logaritmo di un numero non positivo");
+                    return;
+                }
+                result = Math.log10(n1);
+            }
+            case "√" -> {
+                if (n1 < 0) {
+                    display.setText("Errore: radice di un numero negativo");
+                    return;
+                }
+                result = Math.sqrt(n1);
+            }
+            case "÷" -> {
+                if (n2 == 0) {
+                    display.setText("Errore: divisione per zero");
+                    return;
+                }
+                result = calc(n1, n2, op);
+            }
+            default -> result = calc(n1, n2, op);
+        }
+
+        num1 = String.valueOf(result);
+        display.setText(num1);
+        oldop = false;
+        num2 = "";
     }
 
     @FXML
-    protected void CAction() {
+    protected void cAction() {
         num1 = "";
         num2 = "";
         result = 0;
@@ -359,7 +354,7 @@ public class Calculate extends Application {
     }
 
     @FXML
-    protected void CEAction() {
+    protected void ceAction() {
         if (!oldop) {
             num1 = "";
             display.setText(op);
