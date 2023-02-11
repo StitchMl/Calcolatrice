@@ -115,7 +115,7 @@
                         <!-- Default configuration for running with: mvn clean javafx:run -->
                         <id>default-cli</id>
                         <configuration>
-                            <mainClass>com.example.calcolatrice/it.uniroma2.dicii.ispw.calcolatrice.Calculate</mainClass>
+                            <mainClass>it.uniroma2.dicii.ispw.calcolatrice.Calculate</mainClass>
                         </configuration>
                     </execution>
                 </executions>
