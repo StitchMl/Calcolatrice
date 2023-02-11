@@ -101,33 +101,6 @@ public class Calculate extends Application {
     }
 
     @FXML
-    protected void sumAction() {
-        if(!Objects.equals(op, "")){
-            equalAction();
-        }
-        if (num1.isEmpty()) {
-            if (!oldop) {
-                oldop = true;
-                op = "+";
-                display.setText(num1 + op);
-            } else {
-                try {
-                    double n1 = Double.parseDouble(num1);
-                    double n2 = Double.parseDouble(num2);
-                    result = calc(n1, n2, op);
-                    num1 = String.valueOf(result);
-                    num2 = "";
-                    op = "+";
-                    display.setText(num1 + op);
-                    oldop = true;
-                } catch (NumberFormatException e) {
-                    display.setText(ERROR);
-                }
-            }
-        }
-    }
-
-    @FXML
     protected void changeSignAction() {
         if (!oldop && !num1.isEmpty()) {
             if (Double.parseDouble(num1) < 0) {
@@ -147,28 +120,52 @@ public class Calculate extends Application {
     }
 
     @FXML
+    protected void sumAction() {
+        if(!Objects.equals(op, "")){
+            equalAction();
+        }
+        if (num1.isEmpty()) {
+            baseAction("+");
+        }
+    }
+
+    @FXML
     protected void mineAction() {
         if(!Objects.equals(op, "")){
             equalAction();
         }
         if(!num1.isEmpty()) {
-            if (!oldop) {
-                oldop = true;
-                op = "-";
+            baseAction("-");
+        }
+    }
+
+    @FXML
+    protected void mulAction() {
+        if(!Objects.equals(op, "")){
+            equalAction();
+        }
+        if(!num1.isEmpty()) {
+            baseAction("x");
+        }
+    }
+
+    private void baseAction(String s){
+        if (!oldop) {
+            oldop = true;
+            op = s;
+            display.setText(num1 + op);
+        } else {
+            try {
+                double n1 = Double.parseDouble(num1);
+                double n2 = Double.parseDouble(num2);
+                result = calc(n1, n2, op);
+                num1 = String.valueOf(result);
+                num2 = "";
+                op = s;
                 display.setText(num1 + op);
-            } else {
-                try {
-                    double n1 = Double.parseDouble(num1);
-                    double n2 = Double.parseDouble(num2);
-                    result = calc(n1, n2, op);
-                    num1 = String.valueOf(result);
-                    num2 = "";
-                    op = "-";
-                    display.setText(num1 + op);
-                    oldop = true;
-                } catch (NumberFormatException e) {
-                    display.setText(ERROR);
-                }
+                oldop = true;
+            } catch (NumberFormatException e) {
+                display.setText(ERROR);
             }
         }
     }
@@ -204,32 +201,6 @@ public class Calculate extends Application {
         }
     }
 
-    @FXML
-    protected void mulAction() {
-        if(!Objects.equals(op, "")){
-            equalAction();
-        }
-        if(!num1.isEmpty()) {
-            if (!oldop) {
-                oldop = true;
-                op = "x";
-                display.setText(num1 + op);
-            } else {
-                try {
-                    double n1 = Double.parseDouble(num1);
-                    double n2 = Double.parseDouble(num2);
-                    result = calc(n1, n2, op);
-                    num1 = String.valueOf(result);
-                    num2 = "";
-                    op = "x";
-                    display.setText(num1 + op);
-                    oldop = true;
-                } catch (NumberFormatException e) {
-                    display.setText(ERROR);
-                }
-            }
-        }
-    }
     @FXML
     protected void squaredAction() {
         if(!Objects.equals(op, "")){
