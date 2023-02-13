@@ -109,7 +109,8 @@ public class Calculate extends Application {
             return;
         }
 
-        double n1, n2 = 0;
+        double n1;
+        double n2 = 0;
         try {
             n1 = Double.parseDouble(num1);
             if (!num2.isEmpty()) {
