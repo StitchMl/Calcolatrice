@@ -1,6 +1,6 @@
 # Calculator - exercise **Software Engineering and Web Design** - Tor Vergata
 
-This project represents a **calculator** developed as a practical exercise as part of the **Software Engineering and Web Design** of Tor Vergata course held in 2023. The main objective was the application of software design and development concepts in a real-world context.
+This project represents a **calculator** developed as a practical exercise as part of the **Software Engineering and Web Design** of Tor Vergata course held in 2022. The main objective was the application of software design and development concepts in a real-world context.
 
 ---
 
